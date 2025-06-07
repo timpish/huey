@@ -1,5 +1,5 @@
-# tmpl
+# Huey
 
-description
+An HSL Color Toy
 
-[tmpl.timpish.com](https://tmpl.timpish.com)
+[huey.timpish.com](https://huey.timpish.com)
