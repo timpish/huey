@@ -1,9 +1,18 @@
+<!--
+- [ ] type scale
+- [ ] refactor
+ -->
 <!doctype html>
 <html lang=en>
 <meta charset=utf-8>
 <meta content="width=device-width,initial-scale=1" name=viewport>
 <title>Huey—HSL Color Toy</title>
 <style>
+    /* layout debugger */
+    * {
+        /* outline: .5px dotted black; */
+    }
+
     :root {
         --hue: ;
         --saturation: ;
@@ -14,36 +23,31 @@
         --color-action-default: hsl(var(--hue), 80%, 98%);
         --color-action-hover: hsl(var(--hue), 40%, 87%);
         --color-action-active: hsl(var(--hue), 35%, 80%);
+        --color-code: hsl(var(--hue), 20%, 85%);
         --color-shadow: var(--hue) 3% 10%;
+
         --typography-typeface-monospace: ui-monospace, monospace;
         --typography-typeface-sans-serif: system-ui, sans-serif;
-
-        --typography-size-l: clamp(2.5rem, 2.3571rem + 0.7143vw, 3rem);
-        --typography-size-: clamp(0.9375rem, 0.8482rem + 0.4464vw, 1.25rem);
-        --typography-size-m: 2rem;
-        --typography-size-s: clamp(0.8125rem, 0.7768rem + 0.1786vw, 0.9375rem);
-
         --typography-size-13-16: clamp(0.8125rem, 0.7589rem + 0.2679vw, 1rem);
         --typography-size-15-20: clamp(0.9141rem, 0.8181rem + 0.4799vw, 1.25rem);
         --typography-size-16-25: clamp(1.0283rem, 0.8757rem + 0.7631vw, 1.5625rem);
         --typography-size-19-31: clamp(1.1569rem, 0.9294rem + 1.1375vw, 1.9531rem);
-        /* --typography-size-21-39: clamp(1.3015rem, 0.9758rem + 1.6285vw, 2.4414rem); */
-        --typography-size-23-48: clamp(1.4642rem, 1.0105rem + 2.268vw, 3.0518rem);
+        --typography-size-34-48: clamp(2.125rem, 1.875rem + 1.25vw, 3rem);
         --typography-size-27-61: clamp(1.6472rem, 1.0279rem + 3.0965vw, 3.8147rem);
-
         --typography-leading-open: 1.5;
         --typography-leading-tight: 1;
         --typography-tracking-caps: 0.01cap;
         --typography-tracking-mono: -0.4ch;
 
-        --spacing-xs: clamp(0.25rem, 0.1786rem + 0.3571vw, 0.5rem);
-        --spacing-s: clamp(0.375rem, 0.3393rem + 0.1786vw, 0.5rem);
-        --spacing-m: clamp(0.375rem, 0.3036rem + 0.3571vw, 0.625rem);
-        --spacing-l: clamp(0.5rem, 0.3571rem + 0.7143vw, 1rem);
-        --spacing-xl: clamp(1.375rem, 1.3036rem + 0.3571vw, 1.625rem);
-        --spacing-2xl: clamp(1.5rem, 1.3571rem + 0.7143vw, 2rem);
-        --spacing-3xl: clamp(2rem, 1.7143rem + 1.4286vw, 3rem);
-
+        --spacing-2xs: clamp(0.1875rem, 0.0982rem + 0.4464vw, 0.5rem);
+        --spacing-xs: clamp(0.4375rem, 0.4196rem + 0.0893vw, 0.5rem);
+        --spacing-s: clamp(0.4375rem, 0.3482rem + 0.4464vw, 0.75rem);
+        --spacing-m: clamp(0.4375rem, 0.2768rem + 0.8036vw, 1rem);
+        --spacing-l: clamp(1.25rem, 1.1786rem + 0.3571vw, 1.5rem);
+        --spacing-xl: clamp(1.625rem, 1.5179rem + 0.5357vw, 2rem);
+        --spacing-2xl: clamp(1.625rem, 1.2321rem + 1.9643vw, 3rem);
+        --spacing-l-xl: clamp(1.25rem, 1.0357rem + 1.0714vw, 2rem);
+        --spacing-xl-2xl: clamp(2rem, 1.7143rem + 1.4286vw, 3rem);
 
         --circle: 50%;
         --corner: .6rem;
@@ -90,10 +94,10 @@
         color: var(--color-action-default);
         cursor: pointer;
         font-family: var(--typography-typeface-monospace);
-        font-size: var(--typography-size-23-48);
+        font-size: var(--typography-size-34-48);
         line-height: var(--typography-leading-tight);
         padding-block: .5rem .8rem;
-        padding-inline: var(--spacing-xl);
+        padding-inline: var(--spacing-l);
         transition-duration: 120ms;
         transition-property: transform, color;
         transition-timing-function: ease-in-out;
@@ -147,8 +151,8 @@
         color: var(--color-light);
         display: inline-block;
         font-size: var(--typography-size-13-16);
-        padding-block: var(--spacing-xs);
-        padding-inline: var(--spacing-l)
+        padding-block: var(--spacing-2xs);
+        padding-inline: var(--spacing-m)
     }
 
     button {
@@ -161,8 +165,8 @@
         cursor: pointer;
         display: inline-flex;
         font: inherit;
-        padding: var(--spacing-s);
-        margin: var(--spacing-m);
+        padding: var(--spacing-xs);
+        margin: var(--spacing-s);
         touch-action: manipulation;
         transition-property: background-color, outline;
         transition-duration: 120ms;
@@ -306,6 +310,7 @@
 
     text {
         fill: var(--color-light);
+        font-family: var(--typography-typeface-monospace);
         font-weight: 700;
         dominant-baseline: central;
         text-anchor: middle;
@@ -323,8 +328,8 @@
         color: var(--color-dark);
         margin-block: auto !important;
         max-inline-size: 58rem !important;
-        padding-block: var(--spacing-2xl);
-        padding-inline: var(--spacing-2xl);
+        padding-block: var(--spacing-xl-2xl);
+        padding-inline: var(--spacing-l-xl);
         z-index: var(--top);
     }
 
@@ -382,11 +387,16 @@
     }
 
     code {
+        background-color: var(--color-code);
+        color: var(--color-dark);
+        border-radius: var(--corner);
+        padding-block: .1em;
+        padding-inline: .2em;
         text-wrap: nowrap;
     }
 
     footer a {
-        padding-inline: var(--spacing-l);
+        padding-inline: var(--spacing-m);
         text-decoration: none;
     }
 
@@ -458,7 +468,6 @@
         align-items: center
     }
 
-    /* ANIMATION: Copy success icon transitions */
     .icon {
         height: 2.6cap;
         width: 2.6cap;
@@ -466,8 +475,8 @@
     }
 
     dialog .icon {
-        height: 1.8cap;
-        width: 1.8cap;
+        height: 1.6cap;
+        width: 1.6cap;
     }
 
     .with-icon .icon {
@@ -479,7 +488,6 @@
         position: absolute
     }
 
-    /* ANIMATION: Copy success state transitions */
     .copy-success .icon-copy {
         opacity: 0
     }
@@ -491,7 +499,7 @@
     .stack-x {
         display: flex;
         flex-wrap: wrap;
-        gap: var(--spacing-l);
+        gap: var(--spacing-m);
         align-items: flex-start;
         justify-content: space-between
     }
@@ -504,6 +512,10 @@
 
     [class^='stack-y']>* {
         margin-block: 0;
+    }
+
+    .stack-y-2xs>*+* {
+        margin-block-start: var(--spacing-2xs);
     }
 
     .stack-y-xs>*+* {
@@ -526,6 +538,10 @@
         margin-block-start: var(--spacing-xl);
     }
 
+    .stack-y-2xl>*+* {
+        margin-block-start: var(--spacing-2xl);
+    }
+
     .aic {
         align-items: center;
     }
@@ -534,11 +550,15 @@
         margin: 0;
     }
 
+    .mbs2xs {
+        margin-block-start: var(--spacing-2xs);
+    }
+
     .ttm {
         letter-spacing: var(--typography-tracking-mono);
     }
 
-    .visually-hidden:not(:focus):not(:active):not(:focus-within) {
+    .vh:not(:focus):not(:active):not(:focus-within) {
         clip-path: inset(50%);
         block-size: 1px;
         inline-size: 1px;
@@ -568,14 +588,14 @@
     <header class=stack-x>
         <button class=with-icon id=random-btn title="Random Color"><svg aria-hidden=true class=icon>
                 <use href=#icon-random></use>
-            </svg> <span class=visually-hidden>Randomize</span>
+            </svg> <span class=vh>Randomize</span>
         </button>
         <h1 class=mode-title title="Switch Modes">H</h1>
         <button class=with-icon id=copy-btn title="Copy Color"><svg aria-hidden=true class="icon icon-copy">
                 <use href=#icon-copy></use>
             </svg> <svg aria-hidden=true class="icon icon-check">
                 <use href=#icon-check></use>
-            </svg> <span class=visually-hidden>Copy/Confirm Copy</span>
+            </svg> <span class=vh>Copy/Confirm Copy</span>
         </button>
     </header>
 
@@ -590,43 +610,45 @@
         <small>© '25 <a title="Visit Timothy Martens' website" href=https://timagineer.com>Timagineer</a></small>
     </footer>
 
-    <dialog id="dialog" role="dialog" class="center stack-y-xl">
+    <dialog id="dialog" role="dialog" class="center stack-y-l is a web toy that teaches HSL color through visual interaction. HSL stands for Hue, Saturation, Light">
 
         <header class="stack-x aic">
             <h2>About</h2>
             <button class="with-icon m0" id=close title="Close Modal">
                 <svg aria-hidden=true class=icon>
                     <use href=#icon-close></use>
-                </svg><span class=visually-hidden>Close</span>
+                </svg><span class=vh>Close</span>
             </button>
         </header>
-        <section class="stack-y-l" id="color-instructions">
 
-            <p><i>HUE</i>y is a web toy that teaches <a href="https://en.wikipedia.org/wiki/HSL_and_HSV"><abbr title="Hue, Saturation, Lightness">HSL</abbr> color</a> through visual interaction. <abbr title="Hue, Saturation, Lightness">HSL</abbr> stands for <strong>Hue</strong>, <strong>Saturation</strong>, <strong>Lightness</strong>. It&apos;s an intuitive way to think about color that translates well to modern color models like <abbr title="Oklab Lightness, Chroma, and Hue">OKLCH</abbr>. In <abbr title="Cascading Style Sheets">CSS</abbr>, <abbr title="Hue, Saturation, Lightness">HSL</abbr> colors are written as: <code>hsl(H S L<span class="ttm">)</span></code>. <i>HUE</i>y&apos;s current color is: <code id="hueyColor">hsl(deg &percnt; &percnt;<span class="ttm">)</span></code>.</p>
+        <section class="stack-y-m" id="color-instructions">
+
+            <p><i>HUE</i>y is a web toy that teaches <a href="https://en.wikipedia.org/wiki/HSL_and_HSV"><abbr title="Hue, Saturation, Lightness">HSL</abbr> color</a> through visual interaction. <abbr title="Hue, Saturation, Lightness">HSL</abbr> stands for <strong>Hue</strong>, <strong>Saturation</strong>, <strong>Lightness</strong>. In <abbr title="Cascading Style Sheets">CSS</abbr>, you write <abbr title="Hue, Saturation, Lightness">HSL</abbr> colors as <code>hsl(H S L<span class="ttm">)</span></code>. <i>HUE</i>y&apos;s color is <code id="hueyColor">hsl(deg &percnt; &percnt;<span class="ttm">)</span></code>.</p>
 
             <h3>Understanding HSL</h3>
 
-            <p><strong>Hue</strong> refers to a color&apos;s name, e.g., red, yellow, blue, etc. Hue is a spectral wavelength (angle) expressed in degrees from 0° to 360° on the color wheel.</p>
-
-            <p><strong>Saturation</strong> controls a color&apos;s intensity or vividness, measured as a percentage from 0% to 100%. At 0% saturation, any color becomes pure gray. At 100% saturation, you get the most vibrant version of a color.</p>
-
-            <p><strong>Lightness</strong> determines how bright or dark a color is, also measured from 0% to 100%. At 0% lightness, every color becomes black. At 100% lightness, every color becomes white.</p>
+            <p class="mbs2xs">
+                <strong>Hue</strong> refers to a color&apos;s name, e.g., red, yellow, blue. Hue is a spectral wavelength, expressed as an angle and measured in degrees from 0° to 360°.<br>
+                <strong>Saturation</strong> governs a color&apos;s intensity, measured as a percentage from 0% to 100%. At 0% saturation, colors becomes pure gray. 100% saturation is the most vibrant version of a color.<br>
+                <strong>Lightness</strong>, also measured from 0% to 100%, determines how bright or dark a color is. 0% lightness is black. 100% lightness is white.
+            </p>
 
             <h3>How to operate HUEy</h3>
-            <ul>
-                <li><strong>Switch modes</strong>: Tab or click H/S/L</li>
-                <li><strong>Adjust values</strong>: Click, click and drag, or use arrow keys (&rarr;/&uarr;, &larr;/&darr;)</li>
-                <li><strong>Accelerate</strong>: Hold down arrow keys (&rarr;/&uarr;, &larr;/&darr;) for quicker changes</li>
-                <li><strong>Get inspired</strong>: Click the Random Color button</li>
-                <li><strong>Copy</strong>: Click the Copy Color button to copy the <abbr title="Hue, Saturation, Lightness">HSL</abbr> color to your clipboard</li>
+            <ul class="mbs2xs">
+                <li><strong>Switch modes</strong>: click the H/S/L header, press tab or &apos;h&apos;, &apos;s&apos;, &apos;l&apos;</li>
+                <li><strong>Adjust values</strong>: click, click and drag, or use arrow keys (&apos;&uarr;&apos;, &apos;&darr;&apos;, &apos;&larr;&apos;, &apos;&rarr;&apos;)</li>
+                <li><strong>Accelerate</strong>: hold down arrow keys for quicker changes</li>
+                <li><strong>Get inspired</strong>: press &apos;r&apos; or click the Random Color button</li>
+                <li><strong>Copy color</strong>: press &apos;c&apos; or click the Copy Color button</li>
             </ul>
 
             <p>Share your <i>HUE</i>y color discoveries on <a href="https://www.linkedin.com/in/timothyfmartens/" target="_blank">LinkedIn</a>!</p>
 
         </section>
+
     </dialog>
 
-    <svg aria-hidden=true class=visually-hidden xmlns=http://www.w3.org/2000/svg display=none height=0 width=0 xmlns:xlink=http://www.w3.org/1999/xlink>
+    <svg aria-hidden=true class=vh xmlns=http://www.w3.org/2000/svg display=none height=0 width=0 xmlns:xlink=http://www.w3.org/1999/xlink>
         <defs>
             <symbol id=icon-random title="Random Color Icon" viewBox="0 0 256 256">
                 <path d="M32 72h23.06a64 64 0 0 1 52.08 26.8l41.72 58.4a64 64 0 0 0 52.08 26.8H232M208 48l24 24-24 24" fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=24 />
@@ -1050,6 +1072,17 @@
                 root.style.setProperty("--color-light", dynamicColors.foreground);
 
                 componentValue.textContent = this.toy.state.get(mode);
+
+                // Update the hueyColor display
+                const hueyColorElement = document.getElementById("hueyColor");
+                if (hueyColorElement) {
+                    hueyColorElement.textContent = `hsl(${hue}deg, ${saturation}%, ${lightness}%`;
+                    // Add the closing parenthesis with tight spacing
+                    const closeParen = document.createElement('span');
+                    closeParen.className = 'ttm';
+                    closeParen.textContent = ')';
+                    hueyColorElement.appendChild(closeParen);
+                }
             }
 
             calculateDynamicColors(hue, saturation, lightness) {
@@ -1456,7 +1489,7 @@
                 const liveRegion = document.createElement('div');
                 liveRegion.setAttribute('aria-live', 'polite');
                 liveRegion.setAttribute('aria-atomic', 'true');
-                liveRegion.className = 'visually-hidden';
+                liveRegion.className = 'vh';
                 document.body.appendChild(liveRegion);
             }
 
@@ -1611,7 +1644,7 @@
             async copyHSLToClipboard() {
                 console.log("copyHSLToClipboard: Attempting to copy HSL to clipboard.");
                 const { hue, saturation, lightness } = this.state.get();
-                const hslString = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+                const hslString = `hsl(${hue}deg, ${saturation}%, ${lightness}%)`;
 
                 try {
                     await navigator.clipboard.writeText(hslString);
